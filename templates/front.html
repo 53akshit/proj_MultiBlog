@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+	<ul>
+		{% for i in posts %}
+		<hr>
+		<li>
+		<div >
+			<hr>
+			<h2>posted by {{ i.posted_by}}</h2>
+			<h5>{{ i.created.strftime("%b %d, %Y")}}</h5>
+			<h3>{{ i.title }}</h3>
+			<p>{{ i.post | safe}}</p>
+			<p>likes: {{ i.likes }}</p>
+			<div>
+			 	<a class="btn btn-default" href="/blog/like/{{i.key().id()}}" role="button">like</a><br>
+			 	<a  class = "btn btn-default" href="/blog/Post_edit/{{i.key().id()}}" role="button">edit post</a>
+				<a  class = "btn btn-default" href="/blog/Post/{{i.key().id()}}" role="button"> delete post</a>
+			</div>
+			<br>
+			<form method="post" id="comment_form" action="/blog/comment/{{i.key().id()}}">
+				<div class="row margin-top">
+					<textarea name="comment_textarea">
+					</textarea>
+					<input type="submit" name="submit" label="submit">
+
+				</div>
+				<br>
+				<div class = "row">
+
+
+				</div>
+			</form>
+			<ul>
+			<h2>comments</h2>
+			{% for j in comment %}
+
+				<li>
+				{% if i.key().id() == j.post_id %}
+				<p>{{ j.comment }}</p>
+				<p>posted by - {{j.posted_by}}</p>
+				<a  class = "btn btn-default" href="/blog/comment_edit/{{j.key().id()}}" role="button">edit comment</a>
+				<a  class = "btn btn-default" href="/blog/delete/{{j.key().id()}}" role="button"> delete comment</a>
+				{% endif %}
+				</li>
+				{% endfor %}
+			</ul>
+		 	</div>
+		</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+
