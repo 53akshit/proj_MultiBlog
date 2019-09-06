@@ -1,7 +1,7 @@
 # udacity-multiuserblog
 <h1> Mulit-User-Blog </h1>
 
-visit: <a href="http://www.flaskmusicblog.herokuapp.com">click me</a>
+visit: <a href="http://flaskmusicblog.herokuapp.com">click me</a>
 
 <h4>or</h4>
 
